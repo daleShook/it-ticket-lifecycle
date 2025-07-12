@@ -2,7 +2,6 @@ import uuid
 import datetime
 import random
 
-
 def mock_session_timestamp(base_time=None, min_delta=5, max_delta=30):
     """
     Generate a mock timestamp by adding a random delta (in minutes)
@@ -21,17 +20,25 @@ class Session:
         self.end_time = None
         self.active_tickets = []
         self.status = "Active"
-        print(f"[{self.start_time.strftime('%Y-%m-%d %H:%M:%S')}] "
-              f"Session Started: ID: {self.session_id}")
+        print(f"[{self.start_time.strftime('%Y-%m-%d %H:%M:%S')}] Session Started: ID: {self.session_id}")
 
     def add_ticket(self, ticket):
+        ticket['submitted_at'] = mock_session_timestamp(self.start_time, 1, 2)
         self.active_tickets.append(ticket)
-        print(f"[{mock_session_timestamp(self.start_time, 1, 2).strftime('%Y-%m-%d %H:%M:%S')}] "
-              f"Ticket Added: Ticket ID: {ticket['ticket_id']}")
+        print(f"Ticket Added: Ticket ID: {ticket['ticket_id']}")
 
     def close_session(self):
         self.end_time = mock_session_timestamp(self.start_time, 10, 60)
         self.status = "Complete"
-        print(f"[{self.end_time.strftime('%Y-%m-%d %H:%M:%S')}] "
-              f"Session Ended: ID: {self.session_id}")
+        duration = self.end_time - self.start_time
+        print(f"[{self.end_time.strftime('%Y-%m-%d %H:%M:%S')}] Session Ended: ID: {self.session_id}")
         print(f"Total Tickets Processed: {len(self.active_tickets)}")
+        print(f"[Meta] Total Sessions: 1, Active: 0, Total Tickets: {len(self.active_tickets)}")
+
+        # 🆕 Add total time to resolution meta
+        total_minutes = int(duration.total_seconds() // 60)
+        hours, minutes = divmod(total_minutes, 60)
+        if hours:
+            print(f"[Meta] Total Time to Resolution: {hours} hour(s) {minutes} minute(s)")
+        else:
+            print(f"[Meta] Total Time to Resolution: {minutes} minute(s)")
