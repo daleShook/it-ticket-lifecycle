@@ -8,11 +8,11 @@ The system allows you to simulate the lifecycle of IT support tickets from creat
 
 ## Features
 
-- 🛠 Modular design for easy extension and maintenance.
-- 📋 Simulates full IT ticket workflows: submission, categorization, assignment, resolution, and user notifications.
-- ⏱ Mock timestamp generation to reflect real-world process timelines.
-- 🔥 Event-driven architecture using a lightweight emitter for decoupled workflows.
-- 🗄 Includes placeholder folders for `docs/` and `tests/` to demonstrate project scaffolding best practices.
+-  Modular design for easy extension and maintenance.
+-  Simulates full IT ticket workflows: submission, categorization, assignment, resolution, and user notifications.
+-  Mock timestamp generation to reflect real-world process timelines.
+-  Event-driven architecture using a lightweight emitter for decoupled workflows.
+-  Includes placeholder folders for `docs/` and `tests/` to demonstrate project scaffolding best practices.
 
 ---
 
